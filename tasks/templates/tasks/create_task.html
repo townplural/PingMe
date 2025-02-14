@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% block content %}
+  <h2>Create New Task</h2>
+  
+  <!-- Форма для создания задачи -->
+  <form method="POST">
+    {% csrf_token %}
+    
+    <!-- Выводим форму -->
+    {{ form.as_p }}
+    
+    <!-- Кнопка для отправки формы -->
+    <button type="submit">Create Task</button>
+  </form>
+{% endblock %}
+</body>
+</html>

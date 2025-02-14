@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% for task in tasks %}
+      <h1>Name: <a href='{% url "tasks:single_task" task.slug %}'>{{ task.name }}</a><br></h1>
+    {% endfor %}
+</body>
+</html>
