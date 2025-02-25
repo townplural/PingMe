@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'tasks:all_tasks' %}" class="nav-link">Все задачи</a></li>
-            <li><a href="{% url 'tasks:create_task' %}" class="nav-link">Создать новую задачу</a></li>
-            <li><a href="#" class="nav-link">Вход</a></li>
-        </ul>
-    </nav>
+    <div class='header-container'>
+        <nav>
+            <ul>
+                <li><a href="{% url 'tasks:all_tasks' %}" class="nav-link {% if request.path == '/tasks/all_tasks/' %}active{% endif %}">Все  задачи</a></li>
+                <li><a href="{% url 'tasks:create_task' %}" class="nav-link {% if request.path == '/tasks/create_task/' %}active{% endif %}">Создать новую задачу</a></li>
+                <li><a href="#" class="nav-link">user.name or something like this</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <main>
         {% block content %}

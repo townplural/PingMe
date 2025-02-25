@@ -1,0 +1,30 @@
+{% extends "tasks/base.html" %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+    <h2>Изменение задачи</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- Обработка ошибок -->
+        {% if form.errors %} 
+        <!-- Если в форме ошибки -->
+            <ul class="errors">
+                {% for field in form %}
+                <!-- Проход по полям форме -->
+                    {% for error in field.errors %}
+                        <!-- Проваливаемся в field.{errors} -->
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        
+    </form>
+    <!-- Кнопка удаления -->
+    <form method="POST" action="{% url 'tasks:delete_task' slug=task.slug %}">
+            {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить задачу</button>
+    </form>
+{% endblock content %}

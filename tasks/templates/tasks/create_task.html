@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends "tasks/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
 {% block content %}
   <h2>Create New Task</h2>
   
@@ -17,8 +12,6 @@
     {{ form.as_p }}
     
     <!-- Кнопка для отправки формы -->
-    <button type="submit">Create Task</button>
+    <button type="submit" class="btn btn-danger">Create Task</button>
   </form>
 {% endblock %}
-</body>
-</html>

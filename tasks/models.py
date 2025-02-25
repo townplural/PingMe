@@ -1,5 +1,7 @@
 from django.db import models
-from django.utils.text import slugify
+# from django.utils.text import slugify (Не поддерживает русский язык)
+from pytils.translit import slugify # Поддерживает русский язык
+
 
 class Task(models.Model):
     name = models.CharField(max_length=50)

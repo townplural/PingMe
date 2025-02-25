@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'tasks',
+    'telegram_bot',
     
 ]
 
@@ -128,3 +129,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+TELEGRAM_BOT_TOKEN = '8105486705:AAHQrwQEfmFBzrncQPAOHcWzhPY0nwBcISs'

@@ -12,6 +12,7 @@ class AllTasks(ListView):
     
     """
     шаблон есть
+    Остались только косметические правки всякие
     Просмотр всех задач 
     Так же можно отметить выполнение задачи (Галочка)
     Обновить статус задачи(Не начата, В процессе, Завершена)
@@ -19,7 +20,7 @@ class AllTasks(ListView):
     """
     
     model = Task
-    template_name = 'tasks/all.html'
+    template_name = 'tasks/all_tasks.html'
     paginate_by = 10
     context_object_name = 'tasks'
     
@@ -33,14 +34,15 @@ class AllTasks(ListView):
 class SingleTask(DetailView):
     
     """
-    изменить шаблон
+    
+    шаблон есть
     Просмотр атрибутов отдельной задачи:
     Название, описание, сроки и т.д.
     
     """
     
     model = Task
-    template_name = 'tasks/view_task.html'
+    template_name = 'tasks/single_task.html'
     context_object_name = 'task'
     
     def get_context_data(self, **kwargs):
@@ -53,7 +55,8 @@ class SingleTask(DetailView):
 class CreateTask(CreateView):
     
     """
-    шаблон есть
+    Есть форма для отпраки задачи в БД
+    Остались только косметические правки
     Создание задачи:
     Название, описание, сроки и т.д.
     

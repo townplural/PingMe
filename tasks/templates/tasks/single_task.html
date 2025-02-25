@@ -1,7 +1,17 @@
-{% extends "base.html" %}
+{% extends "tasks/base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-
+<ul class='task-list'>
+    <li>Название: {{task.name}}</li>
+    <li>Описание: {{task.description}}</li>
+    <li>Время создания: {{task.time_create}}</li>
+    <li>Категория: {{task.category.name}}</li>
+    <li>Статус: {{task.status.name}}</li>
+</ul>
+<form method="get" action="{% url "tasks:edit_task" slug=task.slug %}">
+    {% csrf_token %}
+    <button class="btn btn-success">Редактировать задачу</button>
+</form>
 {% endblock content %}
