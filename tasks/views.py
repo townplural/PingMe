@@ -2,13 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView,  UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import *
 from .forms import *
 from .utils import get_page_title
 
 
-class AllTasks(ListView):
+class AllTasks(LoginRequiredMixin, ListView):
     
     """
     шаблон есть
@@ -29,9 +30,13 @@ class AllTasks(ListView):
         context["title"] = get_page_title('all_tasks')
         return context
     
+    def get_queryset(self):
+        return Task.objects.filter(owner=self.request.user).order_by('-time_create')
+    
+    
 
 
-class SingleTask(DetailView):
+class SingleTask(LoginRequiredMixin, DetailView):
     
     """
     
@@ -52,7 +57,7 @@ class SingleTask(DetailView):
     
 
 
-class CreateTask(CreateView):
+class CreateTask(LoginRequiredMixin, CreateView):
     
     """
     Есть форма для отпраки задачи в БД
@@ -66,6 +71,10 @@ class CreateTask(CreateView):
     form_class = TaskForm
     template_name = 'tasks/create_task.html'
     
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = get_page_title('create_task')
@@ -78,7 +87,7 @@ class CreateTask(CreateView):
     
 
 
-class EditTask(UpdateView):
+class EditTask(LoginRequiredMixin, UpdateView):
     
     """
     шаблона нет
@@ -94,6 +103,10 @@ class EditTask(UpdateView):
     form_class = TaskForm
     template_name = 'tasks/edit_task.html'
     
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = get_page_title('edit_task')
@@ -104,7 +117,7 @@ class EditTask(UpdateView):
     
 
 
-class DeleteTask(DeleteView):
+class DeleteTask(LoginRequiredMixin, DeleteView):
     model = Task
     template_name ='tasks/delete_task.html'
     

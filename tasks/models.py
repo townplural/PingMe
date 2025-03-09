@@ -1,13 +1,14 @@
 from django.db import models
 # from django.utils.text import slugify (Не поддерживает русский язык)
 from pytils.translit import slugify # Поддерживает русский язык
+from user.models import CustomUser
 
 
 class Task(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     time_create = models.DateTimeField(auto_now_add=True)
-    # owner = models.ForeignKey('User', on_delete=models.CASCADE)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     status = models.ForeignKey('Status', on_delete=models.CASCADE)
@@ -25,12 +26,22 @@ class Task(models.Model):
     def __str__(self):
         return self.name
     
+    
+    class Meta:
+        verbose_name = 'Задача'
+        verbose_name_plural = 'Задачи'
+        ordering = ["-time_create", "is_complete"]
+    
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Status(models.Model):
@@ -40,3 +51,8 @@ class Status(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+    class Meta:
+        verbose_name = 'Статус'
+        verbose_name_plural = 'Статусы'

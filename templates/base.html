@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+    <div class='header-container'>
+        <nav>
+            <ul>
+                <li><a href="{% url 'tasks:all_tasks' %}" class="nav-link {% if request.path == '/tasks/all_tasks/' %}active{% endif %}">Все  задачи</a></li>
+                <li><a href="{% url 'tasks:create_task' %}" class="nav-link {% if request.path == '/tasks/create_task/' %}active{% endif %}">Создать новую задачу</a></li>
+                <li><a href="{% url 'user:profile_user' %}" class="nav-link {% if request.path == '/user/profile/' %}active{% endif %}">Профиль</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        {% block content %}
+        <!-- Здесь будет содержимое каждой страницы -->
+        {% endblock content %}
+    </main>
+</body>
+</html>

@@ -18,9 +18,7 @@ class TasksAdmin(admin.ModelAdmin):
         'slug': ['name'],
     }
     
-    class Meta:
-        verbose_name = 'Task'
-        verbose_name_plural = 'Tasks'
+
 
 
 @admin.register(Category)
@@ -29,9 +27,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
     ]
     
-    class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+
 
 
 @admin.register(Status)
@@ -40,6 +36,3 @@ class StatusAdmin(admin.ModelAdmin):
         'name',
     ]
     
-    class Meta:
-        verbose_name = 'Status'
-        verbose_name_plural = 'Statuses'
