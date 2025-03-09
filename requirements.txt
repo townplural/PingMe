@@ -24,12 +24,15 @@ kombu==5.4.2
 magic-filter==1.0.12
 multidict==6.1.0
 packaging==24.2
+pillow==11.1.0
 prompt_toolkit==3.0.50
 propcache==0.2.1
 psycopg2-binary==2.9.10
 pydantic==2.10.6
 pydantic_core==2.27.2
 python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+pytils==0.4.1
 redis==5.2.1
 six==1.17.0
 sqlparse==0.5.3
